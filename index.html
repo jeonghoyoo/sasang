@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+	<title>AI가 얼굴로 판단해주는 나의 체질은?</title>
+
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="loadingbar.css" />
+	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5fcb773d699fe49b"></script>
+
+</head>
+
+<body>
+	<div id="loading-bar-spinner" class="spinner">
+		<div class="spinner-icon"></div>
+	</div>
+	<nav class="p-3 container navbar navbar-expand-lg navbar-light">
+		<a class="navbar-brand mt-3" href="#">나의 사상체질 테스트 </a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">AI가 얼굴로 보는 사상체질
+						<span class="sr-only">(current)</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<h3 class="pb-2 d-flex justify-content-center">성별을 선택하세요</h3>
+	<section class="d-flex justify-content-center">
+		<p class="d-flex align-items-center pr-3">여자</p>
+		<div>
+			<input type="checkbox" id="genderCheckbox" class="event-bind-elements">
+			<label for="genderCheckbox">
+				<span class="knob">
+					<i></i>
+				</span>
+			</label>
+		</div>
+		<p class="d-flex align-items-center pl-3">남자</p>
+	</section>
+	<section class="section">
+		<h1 class="title">사상체질 테스트</h1>
+		<h2 class="subtitle">AI는 당신의 체질을 맞출 수 있을까요?</h2>
+		<h4 class="sr-only">
+			본 서비스는 Google의 인공지능 teachable machine 2.0을 활용하였습니다.
+		</h4>
+		<p class="sr-only">
+			얼굴로 보는 당신의 체질을 알아보세요. 각 체질은 대표 유명인의 얼굴로 학습한 인공지능이 답해줍니다.
+			얼굴로만 체질을 알기는 힘듭니다. 재미로 보시고, 자세한 정보를 얻고 싶으시면 사상체질 알아보기를 클릭하세요.
+		</p>
+	</section>
+
+	<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+	<div class="mt-3 container file-upload">
+		<div class="image-upload-wrap">
+			<input id="yourImageInput" class="file-upload-input event-bind-elements" type="file" accept="image/*" />
+			<div class="drag-text">
+				<img src="img/image_upload.png" class="mt-5 pt-5 upload" />
+				<h3 class="mb-5 pb-5 pt-4 upload-text">
+					얼굴 사진을 올려놓거나 눌러서 업로드하세요!
+				</h3>
+			</div>
+		</div>
+		<div class="file-upload-content">
+			<img class="file-upload-image" id="face-image" src="#" alt="your image" />
+			<p class="result-message"></p>
+			<div id="label-container" class="d-flex flex-column justify-content-around"></div>
+			<div id="addThis" class="addthis_inline_share_toolbox_6lz1"></div>
+			
+			<!-- Go to www.addthis.com/dashboard to customize your tools -->
+			<div class="addthis_inline_share_toolbox"></div>
+            
+			<div class="pt-3 image-title-wrap">
+				<button type="button p-2" class="try-again-btn event-bind-elements" id="initImageUploadArea">
+					<span class="try-again-text">재시도</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- 지우지 말 것!!! -->
+	<section id="yotube-bottom-link" class="mt-2 d-flex flex-column justify-content-center align-items-center"
+		onclick="gtag('event', '조코딩 유튜브 클릭', {'event_category': '조코딩 유튜브 클릭','event_label': '하단 광고'});">
+		<iframe width="320" height="180" src="https://www.youtube.com/embed/s6SITKSN9Q0" frameborder="0"
+			allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+		<h4 class="mt-1 text-center">이런 앱 만들면 얼마 벌까? 충격적인 수익 공개합니다</h4>
+	</section>
+	<script>
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.3/dist/teachablemachine-image.min.js"></script>
+	<script class="text/javascript" src="js/machine.js"></script>
+	<div id="disqus_thread"></div>
+	<script>
+		/**
+		*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+		*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+		/*
+		var disqus_config = function () {
+		this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+		this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+		};
+		*/
+		(function () { // DON'T EDIT BELOW THIS LINE
+			var d = document, s = d.createElement('script');
+			s.src = 'https://skyhot43.disqus.com/embed.js';
+			s.setAttribute('data-timestamp', +new Date());
+			(d.head || d.body).appendChild(s);
+		})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+			Disqus.</a></noscript>
+	<script>
+		window.onload = function () {
+			var pokemon = new Pokemon();
+			pokemon.initWorks(true);
+		}
+	</script>
+</body>
+<!-- 
+image input box
+Copyright (c) 2020 by Aaron Vanston (https://codepen.io/aaronvanston/pen/yNYOXR)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+gender toggle
+Copyright (c) 2020 by Mert Cukuren (https://codepen.io/knyttneve/pen/bPpEZY)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Copyright (c) 2020 by Himalaya Singh (https://codepen.io/himalayasingh/pen/gdqXBj)
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+</html>
